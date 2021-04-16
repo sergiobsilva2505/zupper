@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TestezupApplication {
 
     public static void main(String[] args) {
-
-
         SpringApplication.run(TestezupApplication.class, args);
     }
 
