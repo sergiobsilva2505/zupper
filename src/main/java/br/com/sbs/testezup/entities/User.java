@@ -30,6 +30,13 @@ public class User implements Serializable{
         this.dateOfBirth = dateOfBirth;
     }
 
+    public User(String name, String email, String cpf, LocalDate dateOfBirth) {
+        this.name = name;
+        this.email = email;
+        this.cpf = cpf;
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public Integer getId() {
         return id;
     }

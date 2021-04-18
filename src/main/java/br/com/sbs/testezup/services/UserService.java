@@ -19,4 +19,9 @@ public class UserService {
         return user.orElseThrow(() -> new UserNotFoundException(
                 "Object not found. - Id: "+ id +", Type: " + (User.class.getName())));
     }
+
+    public User insertUser(User user){
+        User obj = userRepository.save(user);
+        return obj;
+    }
 }
