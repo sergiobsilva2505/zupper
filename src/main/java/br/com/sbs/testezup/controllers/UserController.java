@@ -2,6 +2,7 @@ package br.com.sbs.testezup.controllers;
 
 import br.com.sbs.testezup.dto.UserDTO;
 import br.com.sbs.testezup.entities.User;
+import br.com.sbs.testezup.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +19,11 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserSerice userService;
+    private UserService userService;
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> findUserById(@PathVariable Integer id){
-        Optional<User> obj = userService.findById(id);
-        return ResponseEntity.ok().body(new UserDTO(obj.get()));
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(new UserDTO(obj));
     }
 }
