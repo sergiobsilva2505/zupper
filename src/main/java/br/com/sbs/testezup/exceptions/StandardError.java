@@ -1,4 +1,4 @@
-package br.com.sbs.testezup.eexceptions;
+package br.com.sbs.testezup.exceptions;
 
 import java.io.Serializable;
 

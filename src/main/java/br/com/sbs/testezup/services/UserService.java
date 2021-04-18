@@ -1,6 +1,6 @@
 package br.com.sbs.testezup.services;
 
-import br.com.sbs.testezup.eexceptions.UserNotFoundException;
+import br.com.sbs.testezup.exceptions.UserNotFoundException;
 import br.com.sbs.testezup.entities.User;
 import br.com.sbs.testezup.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
