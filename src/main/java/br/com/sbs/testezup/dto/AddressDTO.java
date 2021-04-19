@@ -1,18 +1,9 @@
-package br.com.sbs.testezup.entities;
+package br.com.sbs.testezup.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
+import br.com.sbs.testezup.entities.Address;
 
-@Entity
-public class Address implements Serializable {
+public class AddressDTO {
 
-    private  static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String publicPlace; // rua, avenida, praça, largo e etc. Equivale ao logradouro aqui no Brasil.
     private String number;
@@ -22,29 +13,15 @@ public class Address implements Serializable {
     private String uf; // TO DO outra tabela
     private String zipCode;
 
-    public Address() {
-    }
-
-    public Address(Integer id, String publicPlace, String number, String complement, String district, String city,
-                   String uf, String zipCode) {
-        this.id = id;
-        this.publicPlace = publicPlace;
-        this.number = number;
-        this.complement = complement;
-        this.district = district;
-        this.city = city;
-        this.uf = uf;
-        this.zipCode = zipCode;
-    }
-
-    public Address(String publicPlace, String number, String complement, String district, String city, String uf, String zipCode) {
-        this.publicPlace = publicPlace;
-        this.number = number;
-        this.complement = complement;
-        this.district = district;
-        this.city = city;
-        this.uf = uf;
-        this.zipCode = zipCode;
+    public AddressDTO(Address address) {
+        this.id = address.getId();
+        this.publicPlace = address.getPublicPlace();
+        this.number = address.getNumber();
+        this.complement = address.getComplement();
+        this.district = address.getDistrict();
+        this.city = address.getCity();
+        this.uf = address.getUf();
+        this.zipCode = address.getZipCode();
     }
 
     public Integer getId() {
