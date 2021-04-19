@@ -1,6 +1,7 @@
 package br.com.sbs.testezup.dto;
 
 import br.com.sbs.testezup.entities.User;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
