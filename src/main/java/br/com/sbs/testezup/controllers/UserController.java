@@ -9,10 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/user")
+@Transactional
 public class UserController {
 
     @Autowired
@@ -24,8 +27,10 @@ public class UserController {
         return ResponseEntity.ok().body(new UserDTO(obj));
     }
 
+    /** TO DO VALIDATION */
+
     @PostMapping
-    public ResponseEntity<UserDTO> insertUser(@RequestBody UserForm userform){
+    public ResponseEntity<UserDTO> insertUser(@Valid @RequestBody UserForm userform){
         User obj = UserForm.toUser(userform);
         obj = userService.insertUser(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();

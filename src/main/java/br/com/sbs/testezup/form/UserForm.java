@@ -2,13 +2,18 @@ package br.com.sbs.testezup.form;
 
 import br.com.sbs.testezup.entities.User;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 public class UserForm {
 
+    @NotEmpty(message = "Name cannot be null or empty.")
     private String name;
+    @NotEmpty(message = "Email cannot be null or empty.")
     private String email;
+    @NotEmpty(message = "Cpf cannot be null or empty.")
     private String cpf;
+    //@NotEmpty(message = "Birth date cannot be null or empty.")
     private LocalDate dateOfBirth;
 
     public UserForm() {
