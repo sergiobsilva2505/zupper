@@ -1,5 +1,6 @@
 package br.com.sbs.testezup.controllers;
 
+import br.com.sbs.testezup.dto.NewUserResponseDTO;
 import br.com.sbs.testezup.dto.UserResponseDTO;
 import br.com.sbs.testezup.entities.User;
 import br.com.sbs.testezup.dto.UserDTO;
@@ -28,10 +29,10 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> insertUser(@Valid @RequestBody UserDTO userform){
-        User obj = UserDTO.toUser(userform);
+    public ResponseEntity<NewUserResponseDTO> insertUser(@Valid @RequestBody UserDTO userDTO){
+        User obj = UserDTO.toUser(userDTO);
         obj = userService.insertUser(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(new UserResponseDTO(obj));
+        return ResponseEntity.created(uri).body(new NewUserResponseDTO(obj));
     }
 }

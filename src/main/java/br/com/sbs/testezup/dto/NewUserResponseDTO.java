@@ -1,13 +1,12 @@
 package br.com.sbs.testezup.dto;
 
-import br.com.sbs.testezup.entities.Address;
 import br.com.sbs.testezup.entities.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserResponseDTO {
+public class NewUserResponseDTO {
 
     private Integer id;
     private String name;
@@ -15,20 +14,12 @@ public class UserResponseDTO {
     private String cpf;
     private LocalDate dateOfBirth;
 
-    private List<AddressResponseDTO> addressDTOS;
-
-    public UserResponseDTO(User user) {
-        List<AddressResponseDTO> newList = new ArrayList<>();
-        user.getAddresses().stream().forEach(address -> {
-           newList.add(new AddressResponseDTO(address));
-        });
-        List<AddressResponseDTO> listRespDto = new ArrayList<>();
+    public NewUserResponseDTO(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
         this.cpf = user.getCpf();
         this.dateOfBirth = user.getDateOfBirth();
-        this.addressDTOS = newList;
     }
 
     public Integer getId() {
@@ -69,13 +60,5 @@ public class UserResponseDTO {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public List<AddressResponseDTO> getAddressDTOS() {
-        return addressDTOS;
-    }
-
-    public void setAddressDTOS(List<AddressResponseDTO> addressDTOS) {
-        this.addressDTOS = addressDTOS;
     }
 }

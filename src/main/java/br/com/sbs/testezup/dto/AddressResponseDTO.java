@@ -12,6 +12,7 @@ public class AddressResponseDTO {
     private String city; // TO DO outra tabela
     private String uf; // TO DO outra tabela
     private String zipCode;
+    private String addressOwnersName;
 
     public AddressResponseDTO(Address address) {
         this.id = address.getId();
@@ -22,6 +23,7 @@ public class AddressResponseDTO {
         this.city = address.getCity();
         this.uf = address.getUf();
         this.zipCode = address.getZipCode();
+        this.addressOwnersName = address.getUser().getName();
     }
 
     public Integer getId() {
@@ -86,5 +88,13 @@ public class AddressResponseDTO {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String getAddressOwnersName() {
+        return addressOwnersName;
+    }
+
+    public void setAddressOwnersName(String addressOwnersName) {
+        this.addressOwnersName = addressOwnersName;
     }
 }

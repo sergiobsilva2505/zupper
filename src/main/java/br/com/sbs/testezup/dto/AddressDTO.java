@@ -6,6 +6,7 @@ import br.com.sbs.testezup.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class AddressDTO {
@@ -34,7 +35,7 @@ public class AddressDTO {
     @NotEmpty(message = "Zip code is mandatory")
     private String zipCode;
 
-    @NotEmpty(message = "User id is mandatory")
+    @NotNull(message = "User id is mandatory")
     private Integer userId;
 
     public AddressDTO() {
