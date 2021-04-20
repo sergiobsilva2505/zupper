@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -22,7 +23,7 @@ public class AddressControler {
     private AddressService addressService;
 
     @PostMapping
-    public ResponseEntity<AddressDTO> insert(@RequestBody AddressForm objForm){
+    public ResponseEntity<AddressDTO> insert(@Valid @RequestBody AddressForm objForm){
         Address obj = AddressForm.toAddress(objForm);
         obj = addressService.insertAddress(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();

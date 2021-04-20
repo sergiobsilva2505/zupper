@@ -2,10 +2,7 @@ package br.com.sbs.testezup.entities;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -19,7 +16,11 @@ public class User implements Serializable{
     private Integer id;
     private String name;
     private String email;
+
+    // @Column(unique = true) TODO
     private String cpf;
+
+    // @Column(unique = true) TODO
     private LocalDate dateOfBirth;
 
     public User() { }

@@ -1,15 +1,15 @@
 package br.com.sbs.testezup.exceptions;
 
-public class UserFormException {
+public class FormException {
 
     private String campo;
     private String erro;
 
-    public UserFormException(String campo) {
+    public FormException(String campo) {
         this.campo = campo;
     }
 
-    public UserFormException(String campo, String erro) {
+    public FormException(String campo, String erro) {
         this.campo = campo;
         this.erro = erro;
     }

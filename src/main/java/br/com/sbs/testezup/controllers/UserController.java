@@ -27,8 +27,6 @@ public class UserController {
         return ResponseEntity.ok().body(new UserDTO(obj));
     }
 
-    /** TO DO VALIDATION */
-
     @PostMapping
     public ResponseEntity<UserDTO> insertUser(@Valid @RequestBody UserForm userform){
         User obj = UserForm.toUser(userform);
