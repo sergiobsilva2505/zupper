@@ -1,9 +1,11 @@
 package br.com.sbs.testezup.dto;
 
+import br.com.sbs.testezup.entities.Address;
 import br.com.sbs.testezup.entities.User;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDTO {
 
@@ -13,12 +15,15 @@ public class UserDTO {
     private String cpf;
     private LocalDate dateOfBirth;
 
+    private List<Address> addressDTOS;
+
     public UserDTO(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
         this.cpf = user.getCpf();
         this.dateOfBirth = user.getDateOfBirth();
+        this.addressDTOS = user.getAddresses();
     }
 
     public Integer getId() {
@@ -59,5 +64,14 @@ public class UserDTO {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    // TODO
+    public List<AddressDTO> getAddressDTOS() {
+        return addressDTOS;
+    }
+
+    public void setAddressDTOS(List<AddressDTO> addressDTOS) {
+        this.addressDTOS = addressDTOS;
     }
 }

@@ -1,9 +1,6 @@
 package br.com.sbs.testezup.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -18,9 +15,13 @@ public class Address implements Serializable {
     private String number;
     private String complement;
     private String district;
-    private String city; // TO DO outra tabela
-    private String uf; // TO DO outra tabela
+    private String city; // TODO outra tabela
+    private String uf; // TODO outra tabela
     private String zipCode;
+
+    @ManyToOne
+    @JoinColumn(name="user_id") // , nullable=false
+    private User user;
 
     public Address() {
     }
@@ -37,13 +38,15 @@ public class Address implements Serializable {
         this.zipCode = zipCode;
     }
 
-    public Address(String publicPlace, String number, String complement, String district, String city, String uf, String zipCode) {
+    public Address(String publicPlace, String number, String complement, String district, String city, String uf,
+                   String zipCode, User user) {
         this.publicPlace = publicPlace;
         this.number = number;
         this.complement = complement;
         this.district = district;
         this.city = city;
         this.uf = uf;
+        this.user = user;
         this.zipCode = zipCode;
     }
 
@@ -109,5 +112,13 @@ public class Address implements Serializable {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

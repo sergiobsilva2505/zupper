@@ -1,13 +1,17 @@
 package br.com.sbs.testezup.form;
 
 import br.com.sbs.testezup.entities.Address;
-import org.hibernate.validator.constraints.Length;
+import br.com.sbs.testezup.entities.User;
+import br.com.sbs.testezup.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class AddressForm {
+
+    @Autowired
+    private UserService userService;
 
     @NotEmpty(message = "Public place is mandatory")
     private String publicPlace; // rua, avenida, praça, largo e etc. Equivale ao logradouro aqui no Brasil.
@@ -29,6 +33,9 @@ public class AddressForm {
 
     @NotEmpty(message = "Zip code is mandatory")
     private String zipCode;
+
+    @NotEmpty(message = "User id is mandatory")
+    private Integer userId;
 
     public AddressForm() {
     }
@@ -89,16 +96,15 @@ public class AddressForm {
         this.zipCode = zipCode;
     }
 
-    public static Address toAddress(AddressForm objForm){
-        Address obj = new Address(
-                objForm.getPublicPlace(),
-                objForm.getNumber(),
-                objForm.getComplement(),
-                objForm.getDistrict(),
-                objForm.getCity(),
-                objForm.getUf(),
-                objForm.getZipCode()
-        );
-        return obj;
+    public Integer getUserId() {
+        return userId;
     }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+
+
+
 }

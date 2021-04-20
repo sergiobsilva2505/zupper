@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User implements Serializable{
@@ -22,6 +24,9 @@ public class User implements Serializable{
 
     // @Column(unique = true) TODO
     private LocalDate dateOfBirth;
+
+    @OneToMany
+    private List<Address> addresses = new ArrayList<>();
 
     public User() { }
 
@@ -78,5 +83,15 @@ public class User implements Serializable{
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public List<Address> getAddresses() {
+        List<Address> lista = new ArrayList<>();
+        lista.addAll(this.addresses);
+        return lista;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }
