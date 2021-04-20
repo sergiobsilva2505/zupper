@@ -1,43 +1,35 @@
-package br.com.sbs.testezup.form;
+package br.com.sbs.testezup.dto;
 
 import br.com.sbs.testezup.entities.Address;
-import br.com.sbs.testezup.entities.User;
-import br.com.sbs.testezup.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+public class AddressResponseDTO {
 
-public class AddressForm {
-
-    @Autowired
-    private UserService userService;
-
-    @NotEmpty(message = "Public place is mandatory")
+    private Integer id;
     private String publicPlace; // rua, avenida, praça, largo e etc. Equivale ao logradouro aqui no Brasil.
-
-    @NotEmpty(message = "Number is mandatory")
     private String number;
-
     private String complement;
-
-    @NotEmpty(message = "District is mandatory")
     private String district;
-
-    @NotEmpty(message = "City is mandatory")
     private String city; // TO DO outra tabela
-
-    @NotEmpty(message = "Uf is mandatory")
-    @Size(min = 2, max = 2, message = "Abbreviation of the State with 2 character.")
     private String uf; // TO DO outra tabela
-
-    @NotEmpty(message = "Zip code is mandatory")
     private String zipCode;
 
-    @NotEmpty(message = "User id is mandatory")
-    private Integer userId;
+    public AddressResponseDTO(Address address) {
+        this.id = address.getId();
+        this.publicPlace = address.getPublicPlace();
+        this.number = address.getNumber();
+        this.complement = address.getComplement();
+        this.district = address.getDistrict();
+        this.city = address.getCity();
+        this.uf = address.getUf();
+        this.zipCode = address.getZipCode();
+    }
 
-    public AddressForm() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPublicPlace() {
@@ -84,8 +76,8 @@ public class AddressForm {
         return uf;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setUf(String state) {
+        this.uf = state;
     }
 
     public String getZipCode() {
@@ -95,16 +87,4 @@ public class AddressForm {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-
-
-
 }

@@ -1,35 +1,43 @@
 package br.com.sbs.testezup.dto;
 
 import br.com.sbs.testezup.entities.Address;
+import br.com.sbs.testezup.entities.User;
+import br.com.sbs.testezup.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class AddressDTO {
 
-    private Integer id;
+    @Autowired
+    private UserService userService;
+
+    @NotEmpty(message = "Public place is mandatory")
     private String publicPlace; // rua, avenida, praça, largo e etc. Equivale ao logradouro aqui no Brasil.
+
+    @NotEmpty(message = "Number is mandatory")
     private String number;
+
     private String complement;
+
+    @NotEmpty(message = "District is mandatory")
     private String district;
+
+    @NotEmpty(message = "City is mandatory")
     private String city; // TO DO outra tabela
+
+    @NotEmpty(message = "Uf is mandatory")
+    @Size(min = 2, max = 2, message = "Abbreviation of the State with 2 character.")
     private String uf; // TO DO outra tabela
+
+    @NotEmpty(message = "Zip code is mandatory")
     private String zipCode;
 
-    public AddressDTO(Address address) {
-        this.id = address.getId();
-        this.publicPlace = address.getPublicPlace();
-        this.number = address.getNumber();
-        this.complement = address.getComplement();
-        this.district = address.getDistrict();
-        this.city = address.getCity();
-        this.uf = address.getUf();
-        this.zipCode = address.getZipCode();
-    }
+    @NotEmpty(message = "User id is mandatory")
+    private Integer userId;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public AddressDTO() {
     }
 
     public String getPublicPlace() {
@@ -76,8 +84,8 @@ public class AddressDTO {
         return uf;
     }
 
-    public void setUf(String state) {
-        this.uf = state;
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 
     public String getZipCode() {
@@ -87,4 +95,16 @@ public class AddressDTO {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+
+
+
 }

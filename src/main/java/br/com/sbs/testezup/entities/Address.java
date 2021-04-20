@@ -1,5 +1,7 @@
 package br.com.sbs.testezup.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -19,6 +21,7 @@ public class Address implements Serializable {
     private String uf; // TODO outra tabela
     private String zipCode;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id") // , nullable=false
     private User user;

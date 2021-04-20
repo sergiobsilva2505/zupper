@@ -1,8 +1,8 @@
 package br.com.sbs.testezup.controllers;
 
-import br.com.sbs.testezup.dto.UserDTO;
+import br.com.sbs.testezup.dto.UserResponseDTO;
 import br.com.sbs.testezup.entities.User;
-import br.com.sbs.testezup.form.UserForm;
+import br.com.sbs.testezup.dto.UserDTO;
 import br.com.sbs.testezup.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,16 +22,16 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> findUserById(@PathVariable Integer id){
+    public ResponseEntity<UserResponseDTO> findUserById(@PathVariable Integer id){
         User obj = userService.findById(id);
-        return ResponseEntity.ok().body(new UserDTO(obj));
+        return ResponseEntity.ok().body(new UserResponseDTO(obj));
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> insertUser(@Valid @RequestBody UserForm userform){
-        User obj = UserForm.toUser(userform);
+    public ResponseEntity<UserResponseDTO> insertUser(@Valid @RequestBody UserDTO userform){
+        User obj = UserDTO.toUser(userform);
         obj = userService.insertUser(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(new UserDTO(obj));
+        return ResponseEntity.created(uri).body(new UserResponseDTO(obj));
     }
 }

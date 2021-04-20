@@ -1,5 +1,6 @@
 package br.com.sbs.testezup.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -25,7 +26,8 @@ public class User implements Serializable{
     // @Column(unique = true) TODO
     private LocalDate dateOfBirth;
 
-    @OneToMany
+
+    @OneToMany(mappedBy = "user", targetEntity = Address.class, cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
 
     public User() { }
@@ -86,12 +88,15 @@ public class User implements Serializable{
     }
 
     public List<Address> getAddresses() {
-        List<Address> lista = new ArrayList<>();
-        lista.addAll(this.addresses);
-        return lista;
+        return addresses;
     }
 
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
+
+    /*public User setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+        return this;
+    }*/
 }

@@ -1,9 +1,8 @@
 package br.com.sbs.testezup.controllers;
 
-import br.com.sbs.testezup.dto.AddressDTO;
+import br.com.sbs.testezup.dto.AddressResponseDTO;
 import br.com.sbs.testezup.entities.Address;
-import br.com.sbs.testezup.entities.User;
-import br.com.sbs.testezup.form.AddressForm;
+import br.com.sbs.testezup.dto.AddressDTO;
 import br.com.sbs.testezup.services.AddressService;
 import br.com.sbs.testezup.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +27,10 @@ public class AddressControler {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<AddressDTO> insert(@Valid @RequestBody AddressForm objForm){
+    public ResponseEntity<AddressResponseDTO> insert(@Valid @RequestBody AddressDTO objForm){
         Address obj = addressService.insertAddress(objForm);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(new AddressDTO(obj));
+        return ResponseEntity.created(uri).body(new AddressResponseDTO(obj));
     }
 
 }

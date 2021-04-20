@@ -1,37 +1,32 @@
 package br.com.sbs.testezup.dto;
 
-import br.com.sbs.testezup.entities.Address;
 import br.com.sbs.testezup.entities.User;
+import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDTO {
 
-    private Integer id;
+    @NotEmpty(message = "Name cannot be null or empty.")
     private String name;
+
+    @NotEmpty(message = "Email cannot be null or empty.")
+    @Email
     private String email;
+
+    @NotEmpty(message = "Cpf cannot be null or empty.")
+    @CPF(message = "Type a valid CPF")
     private String cpf;
+
+    @NotNull(message = "Birth date cannot be null or empty.")
+    @Past(message = "Date must be in the past")
     private LocalDate dateOfBirth;
 
-    private List<Address> addressDTOS;
-
-    public UserDTO(User user) {
-        this.id = user.getId();
-        this.name = user.getName();
-        this.email = user.getEmail();
-        this.cpf = user.getCpf();
-        this.dateOfBirth = user.getDateOfBirth();
-        this.addressDTOS = user.getAddresses();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public UserDTO() {
     }
 
     public String getName() {
@@ -66,12 +61,8 @@ public class UserDTO {
         this.dateOfBirth = dateOfBirth;
     }
 
-    // TODO
-    public List<AddressDTO> getAddressDTOS() {
-        return addressDTOS;
-    }
-
-    public void setAddressDTOS(List<AddressDTO> addressDTOS) {
-        this.addressDTOS = addressDTOS;
+    public static User toUser(UserDTO objForm){
+        User obj = new User(objForm.getName(), objForm.getEmail(), objForm.getCpf(), objForm.getDateOfBirth());
+        return obj;
     }
 }
