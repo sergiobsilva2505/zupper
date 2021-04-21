@@ -18,17 +18,26 @@ public class UserResponseDTO {
     private List<AddressResponseDTO> addressDTOS;
 
     public UserResponseDTO(User user) {
-        List<AddressResponseDTO> newList = new ArrayList<>();
-        user.getAddresses().stream().forEach(address -> {
-           newList.add(new AddressResponseDTO(address));
-        });
-        List<AddressResponseDTO> listRespDto = new ArrayList<>();
         this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
         this.cpf = user.getCpf();
         this.dateOfBirth = user.getDateOfBirth();
-        this.addressDTOS = newList;
+        this.addressDTOS = toAddressDTO(user.getAddresses());
+    }
+
+    /**
+     * Esse método recebe como parametro a  lista de endereços que vem no objeto User passado no construtor dessa classe,
+     * converte e retorna uma lista de objetos AddressResponseDTO, conformme especificação do padrão MVC.
+     * @param list
+     * @return
+     */
+    private List<AddressResponseDTO> toAddressDTO(List<Address> list){
+        List<AddressResponseDTO> dtoList = new ArrayList<>();
+        list.stream().forEach(address -> {
+            dtoList.add(new AddressResponseDTO(address));
+        });
+        return dtoList;
     }
 
     public Integer getId() {
