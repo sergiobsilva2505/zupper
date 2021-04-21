@@ -27,12 +27,12 @@ public class ResourceExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public  ResponseEntity<List<FormException>> handleValidation(MethodArgumentNotValidException exception){
-        List<FormException> dto = new ArrayList<>();
+    public  ResponseEntity<List<ValidationException>> handleValidation(MethodArgumentNotValidException exception){
+        List<ValidationException> dto = new ArrayList<>();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(e -> {
             String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-            FormException erro = new FormException(e.getField(), mensagem);
+            ValidationException erro = new ValidationException(e.getField(), mensagem);
             dto.add(erro);
         });
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(dto);

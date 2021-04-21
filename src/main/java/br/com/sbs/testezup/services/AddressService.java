@@ -22,18 +22,29 @@ public class AddressService {
         return address;
     }
 
-    private Address toAddress(AddressDTO objForm){
-        User user = userService.findById(objForm.getUserId());
-        Address obj = new Address(
-                objForm.getPublicPlace(),
-                objForm.getNumber(),
-                objForm.getComplement(),
-                objForm.getDistrict(),
-                objForm.getCity(),
-                objForm.getUf(),
-                objForm.getZipCode(),
+    /**
+     *
+     *  Quando chamado converte um objeto AddressDTO, que contém uma referencia para um objeto User
+     *  como chave estrangeira, em um objeto Address como retorno.
+     *  OBS:
+     *  Esse processo não é executado na classe AddressDTO porque deverá ser feito uma busca de usuario por id,
+     *  que foi passado como referencia no obj AddressDTO, e pra essa busca Deve ser instanciado um objeto
+     *  UserService na classe AddressDTO que implicaria em ferir o padrao MVC.
+     * @param obj
+     * @return
+     */
+    private Address toAddress(AddressDTO obj){
+        User user = userService.findById(obj.getUserId());
+        Address address = new Address(
+                obj.getPublicPlace(),
+                obj.getNumber(),
+                obj.getComplement(),
+                obj.getDistrict(),
+                obj.getCity(),
+                obj.getUf(),
+                obj.getZipCode(),
                 user);
-        return obj;
+        return address;
     }
 
 }

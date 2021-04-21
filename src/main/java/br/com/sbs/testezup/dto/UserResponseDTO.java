@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Essa classe tem como objetivo representar um User e seus Addresses, como resposta a requisição.
+ */
 public class UserResponseDTO {
 
     private Integer id;
@@ -44,47 +47,23 @@ public class UserResponseDTO {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getCpf() {
         return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public List<AddressResponseDTO> getAddressDTOS() {
         return addressDTOS;
-    }
-
-    public void setAddressDTOS(List<AddressResponseDTO> addressDTOS) {
-        this.addressDTOS = addressDTOS;
     }
 }

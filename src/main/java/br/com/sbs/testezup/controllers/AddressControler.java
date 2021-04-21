@@ -23,14 +23,12 @@ public class AddressControler {
     @Autowired
     private AddressService addressService;
 
-    @Autowired
-    private UserService userService;
-
     @PostMapping
     public ResponseEntity<AddressResponseDTO> insert(@Valid @RequestBody AddressDTO objForm){
         Address obj = addressService.insertAddress(objForm);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(new AddressResponseDTO(obj));
     }
+
 
 }

@@ -2,6 +2,9 @@ package br.com.sbs.testezup.exceptions;
 
 import java.io.Serializable;
 
+/**
+ *  Essa classe representa o padrão de msg que serão retornadas ao usuario, quando sistemas lançar um exception.
+ */
 public class StandardError implements Serializable {
     private  static final long serialVersionUID = 1L;
 
@@ -10,7 +13,6 @@ public class StandardError implements Serializable {
     private Long timeStamp;
 
     public StandardError(Integer status, String msg, Long timeStamp) {
-        super();
         this.status = status;
         this.msg = msg;
         this.timeStamp = timeStamp;

@@ -1,18 +1,14 @@
 package br.com.sbs.testezup.exceptions;
 
 /**
- * Essa classe representa as mensagens a serem apresentadas ao usuario quando 
+ * Essa classe representa as mensagens a serem apresentadas ao usuario, quando ocorrerem erros de validação
  */
-public class FormException {
+public class ValidationException {
 
     private String campo;
     private String erro;
 
-    public FormException(String campo) {
-        this.campo = campo;
-    }
-
-    public FormException(String campo, String erro) {
+    public ValidationException(String campo, String erro) {
         this.campo = campo;
         this.erro = erro;
     }

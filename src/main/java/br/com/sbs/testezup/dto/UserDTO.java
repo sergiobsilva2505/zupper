@@ -9,6 +9,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
+/**
+ *  Essa classe tem como objetivo, receber a entrada de dados do usuário e fazer a validação  desses dados.
+ */
 public class UserDTO {
 
     @NotEmpty(message = "Name cannot be null or empty.")
@@ -29,40 +32,31 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public String getName() {
-        return name;
+    /**
+     *  Este método recebe um objeto UserDTO e converte para User
+     * @param objForm
+     * @return
+     */
+    public static User toUser(UserDTO objForm){
+        User obj = new User(objForm.getName(), objForm.getEmail(), objForm.getCpf(), objForm.getDateOfBirth());
+        return obj;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getCpf() {
         return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
 
-    public static User toUser(UserDTO objForm){
-        User obj = new User(objForm.getName(), objForm.getEmail(), objForm.getCpf(), objForm.getDateOfBirth());
-        return obj;
-    }
 }
