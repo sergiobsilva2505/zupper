@@ -1,5 +1,8 @@
 package br.com.sbs.testezup.exceptions;
 
+/**
+ * Essa classe representa as mensagens a serem apresentadas ao usuario quando 
+ */
 public class FormException {
 
     private String campo;
@@ -12,13 +15,5 @@ public class FormException {
     public FormException(String campo, String erro) {
         this.campo = campo;
         this.erro = erro;
-    }
-
-    public String getCampo() {
-        return campo;
-    }
-
-    public String getErro() {
-        return erro;
     }
 }
