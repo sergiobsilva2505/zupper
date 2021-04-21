@@ -1,5 +1,6 @@
 package br.com.sbs.testezup.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,14 +19,13 @@ public class User implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    @Column(unique = true)
     private String email;
 
     @Column(unique = true)
     private String cpf;
-
-    @Column(unique = true)
     private LocalDate dateOfBirth;
-
 
     @OneToMany(mappedBy = "user", targetEntity = Address.class, cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
@@ -95,8 +95,4 @@ public class User implements Serializable{
         this.addresses = addresses;
     }
 
-    /*public User setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-        return this;
-    }*/
 }

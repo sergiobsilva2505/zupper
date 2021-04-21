@@ -1,6 +1,7 @@
 package br.com.sbs.testezup.dto;
 
 import br.com.sbs.testezup.entities.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.*;
@@ -24,6 +25,7 @@ public class UserDTO {
 
     @NotNull(message = "Birth date cannot be null or empty.")
     @Past(message = "Date must be in the past")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateOfBirth;
 
     public UserDTO() {
