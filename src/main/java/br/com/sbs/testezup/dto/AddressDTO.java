@@ -28,11 +28,11 @@ public class AddressDTO {
     private String district;
 
     @NotEmpty(message = "City is mandatory")
-    private String city; // TODO outra tabela
+    private String city;
 
     @NotEmpty(message = "Uf is mandatory")
     @Size(min = 2, max = 2, message = "Abbreviation of the State with 2 character.")
-    private String uf; // TODO outra tabela
+    private String uf;
 
     @NotEmpty(message = "Zip code is mandatory")
     private String zipCode;
@@ -43,36 +43,75 @@ public class AddressDTO {
     public AddressDTO() {
     }
 
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     public String getPublicPlace() {
         return publicPlace;
+    }
+
+    public void setPublicPlace(String publicPlace) {
+        this.publicPlace = publicPlace;
     }
 
     public String getNumber() {
         return number;
     }
 
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public String getComplement() {
         return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
     }
 
     public String getDistrict() {
         return district;
     }
 
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
     public String getCity() {
         return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getUf() {
         return uf;
     }
 
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
     public String getZipCode() {
         return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public Integer getUserId() {
         return userId;
     }
 
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 }

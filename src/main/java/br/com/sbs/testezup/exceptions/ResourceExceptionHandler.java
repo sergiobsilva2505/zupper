@@ -26,13 +26,21 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
 
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<StandardError> userNotFound(DataIntegrityViolationException e){
+        StandardError err = new StandardError(HttpStatus.UNPROCESSABLE_ENTITY.value(),
+                e.getMessage(), System.currentTimeMillis());
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
+    }
+
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public  ResponseEntity<List<ValidationException>> handleValidation(MethodArgumentNotValidException exception){
-        List<ValidationException> dto = new ArrayList<>();
+    public  ResponseEntity<List<FormException>> handleValidation(MethodArgumentNotValidException exception){
+        List<FormException> dto = new ArrayList<>();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(e -> {
             String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-            ValidationException erro = new ValidationException(e.getField(), mensagem);
+            FormException erro = new FormException(e.getField(), mensagem);
             dto.add(erro);
         });
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(dto);

@@ -17,8 +17,8 @@ public class Address implements Serializable {
     private String number;
     private String complement;
     private String district;
-    private String city; // TODO outra tabela
-    private String uf; // TODO outra tabela
+    private String city;
+    private String uf;
     private String zipCode;
 
     @JsonIgnore

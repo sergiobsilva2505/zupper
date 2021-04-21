@@ -20,10 +20,10 @@ public class User implements Serializable{
     private String name;
     private String email;
 
-    // @Column(unique = true) TODO
+    @Column(unique = true)
     private String cpf;
 
-    // @Column(unique = true) TODO
+    @Column(unique = true)
     private LocalDate dateOfBirth;
 
 

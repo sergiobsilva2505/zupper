@@ -1,5 +1,6 @@
 package br.com.sbs.testezup.services;
 
+import br.com.sbs.testezup.exceptions.DataIntegrityViolationException;
 import br.com.sbs.testezup.exceptions.UserNotFoundException;
 import br.com.sbs.testezup.entities.User;
 import br.com.sbs.testezup.repository.UserRepository;
@@ -21,7 +22,13 @@ public class UserService {
     }
 
     public User insertUser(User user){
-        User obj = userRepository.save(user);
-        return obj;
+        Optional<User> objEmail = Optional.ofNullable(userRepository.findByEmail(user.getEmail()));
+        Optional<User> objCpf = Optional.ofNullable(userRepository.findByCpf(user.getCpf()));
+        if (objEmail.isEmpty() && objCpf.isEmpty()){
+            return userRepository.save(user);
+        } else {
+            throw new DataIntegrityViolationException("Cpf or email already in use by another user.");
+        }
     }
+
 }
