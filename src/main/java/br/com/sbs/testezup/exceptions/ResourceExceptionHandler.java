@@ -28,9 +28,9 @@ public class ResourceExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<StandardError> userNotFound(DataIntegrityViolationException e){
-        StandardError err = new StandardError(HttpStatus.UNPROCESSABLE_ENTITY.value(),
+        StandardError err = new StandardError(HttpStatus.OK.value(),
                 e.getMessage(), System.currentTimeMillis());
-        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
+        return ResponseEntity.status(HttpStatus.OK).body(err);
     }
 
 
