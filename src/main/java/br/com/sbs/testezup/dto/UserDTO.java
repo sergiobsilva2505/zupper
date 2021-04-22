@@ -2,6 +2,7 @@ package br.com.sbs.testezup.dto;
 
 import br.com.sbs.testezup.entities.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.*;
