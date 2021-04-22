@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
@@ -13,13 +14,13 @@ import javax.validation.constraints.Size;
  */
 public class AddressDTO {
 
-    @Autowired
-    private UserService userService;
-
     @NotEmpty(message = "Public place is mandatory")
+    @Size(min = 5, max = 70)
     private String publicPlace; // rua, avenida, praça, largo e etc. Equivale ao logradouro aqui no Brasil.
 
     @NotEmpty(message = "Number is mandatory")
+    @Size(max = 7)
+    @Pattern(regexp = "[0-9]{7}", message = "must contain only numbers")
     private String number;
 
     private String complement;
@@ -32,23 +33,17 @@ public class AddressDTO {
 
     @NotEmpty(message = "Uf is mandatory")
     @Size(min = 2, max = 2, message = "Abbreviation of the State with 2 character.")
+    @Pattern(regexp = "[A-Z]{2}", message = "must contain only letters")
     private String uf;
 
     @NotEmpty(message = "Zip code is mandatory")
+    @Pattern(regexp = "[0-9]{8}", message = "must contain only numbers")
     private String zipCode;
 
     @NotNull(message = "User id is mandatory")
     private Integer userId;
 
     public AddressDTO() {
-    }
-
-    public UserService getUserService() {
-        return userService;
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 
     public String getPublicPlace() {

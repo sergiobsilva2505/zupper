@@ -1,7 +1,10 @@
 package br.com.sbs.testezup.exceptions;
 
 
-public class FormException {
+import java.io.Serializable;
+
+public class FormException implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private String campo;
     private String erro;

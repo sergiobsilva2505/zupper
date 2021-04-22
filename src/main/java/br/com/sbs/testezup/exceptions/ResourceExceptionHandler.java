@@ -5,6 +5,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,10 +28,10 @@ public class ResourceExceptionHandler {
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<StandardError> userNotFound(DataIntegrityViolationException e){
-        StandardError err = new StandardError(HttpStatus.OK.value(),
+    public ResponseEntity<StandardError> dataIntegrityViolation(DataIntegrityViolationException e){
+        StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(),
                 e.getMessage(), System.currentTimeMillis());
-        return ResponseEntity.status(HttpStatus.OK).body(err);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
 
 
@@ -44,5 +45,12 @@ public class ResourceExceptionHandler {
             dto.add(erro);
         });
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(dto);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<StandardError> messageNotReadable(HttpMessageNotReadableException e){
+        StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(),
+                "Date with incorrect format. Try: dd/mm/yyyy.", System.currentTimeMillis());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
 }

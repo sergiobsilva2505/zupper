@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class UserDTO {
 
     @NotEmpty(message = "Name cannot be null or empty.")
+    @Size(min = 2, max = 60)
     private String name;
 
     @NotEmpty(message = "Email cannot be null or empty.")
